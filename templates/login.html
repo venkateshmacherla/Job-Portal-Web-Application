@@ -50,6 +50,25 @@
     .login-box button:hover {
         background: #235ba8;
     }
+
+    .register-link {
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+        color: #1864ab;
+    }
+
+    .register-link a {
+        color: #1864ab;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .register-link a:hover {
+        color: #235ba8;
+        text-decoration: underline;
+    }
 </style>
 
 <div class="login-container">
@@ -60,6 +79,9 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="register-link">
+            New user? <a href="{{ url_for('register') }}">Register here</a>
+        </div>
     </div>
 </div>
 {% endblock %}
