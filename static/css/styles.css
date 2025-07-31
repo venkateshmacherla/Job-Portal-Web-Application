@@ -1,0 +1,1659 @@
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4 !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-nav .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    font-size: 18px;
+    transition: 0.3s;
+
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff !important;
+}
+
+.navbar-brand {
+    border: none;
+    outline-style: none;
+}
+
+
+.main-heading {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.18;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    color: #102048;
+    padding: 10px 0 0 0;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #2075ec 0%, #65e8df 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lead {
+    font-size: 1.42rem;
+    color: #466485;
+    text-align: center;
+    margin-bottom: 32px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.65;
+    font-weight: 500;
+}
+
+@media (max-width: 767px) {
+    .main-heading {
+        font-size: 2.1rem;
+        padding: 8px 0;
+    }
+
+    .lead {
+        font-size: 1.05rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .job-heading {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+.card-hover-effect {
+    /* Entry animation for each card */
+    animation: fadeInUp 0.6s cubic-bezier(.4, 1.3, .5, 1) forwards;
+    opacity: 0;
+    transition: box-shadow 0.3s, transform 0.25s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-8px) scale(1.035);
+    box-shadow: 0 14px 40px -6px rgba(56, 99, 180, 0.14), 0 2px 8px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+/* Headline and badge */
+.fw-bold.mb-1 {
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+    color: #1e266d !important;
+}
+
+.badge.bg-dark {
+    background: linear-gradient(90deg, #292d46, #2c75ff 90%);
+    font-size: 0.91rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    padding: 0.45em 1.2em 0.38em 1.2em;
+    border-radius: 12px;
+}
+
+/* Company and experience bar */
+.text-muted.fw-bold.mb-2 {
+    margin-bottom: 8px !important;
+    font-size: 1.13rem !important;
+    color: #42506a !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em;
+}
+
+.text-secondary.ms-3 {
+    color: #20b386 !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.00em;
+}
+
+/* Details block (make icons more visible, add spacing) */
+.d-flex.text-muted.small.gap-4.mb-3 span {
+    font-size: 1.01rem;
+    padding-right: 12px;
+    color: #5e6787 !important;
+}
+
+.d-flex.text-muted.small.gap-4.mb-3 i {
+    color: #13b7ff;
+    font-size: 1.13em;
+    margin-right: 4px;
+}
+
+/* Description text for improved visual separation */
+.text-muted.small.mb-2 {
+    color: #768099 !important;
+    font-size: 1.05rem !important;
+    font-weight: 500;
+}
+
+/* Action button polish */
+.btn-success.rounded-pill.px-4 {
+    font-size: 1.06rem;
+    font-weight: 700;
+    padding: 0.57rem 2.1rem !important;
+    background: linear-gradient(92deg, #39c07b 0%, #18cfff 100%);
+    border: none;
+    box-shadow: 0 2px 16px -4px #18cfff30;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.08s;
+}
+
+.btn-success.rounded-pill.px-4:hover,
+.btn-success.rounded-pill.px-4:focus {
+    background: linear-gradient(92deg, #18cfff 0%, #39c07b 100%);
+    color: #fff;
+    transform: scale(1.055);
+    box-shadow: 0 2px 24px -4px #18cfff50;
+}
+
+/* Card styling and responsiveness */
+.bg-white.border.rounded.shadow-sm.p-4 {
+    border-radius: 15px !important;
+    border: 1px solid #e4eaf7 !important;
+    box-shadow: 0 2.5px 20px #6b9eda19, 0 1.5px 8px #23384b08 !important;
+    background: linear-gradient(110deg, #f8fcff 75%, #e8fbfc 100%);
+    min-height: 170px;
+}
+
+@media (max-width: 767px) {
+    .fw-bold.mb-1 {
+        font-size: 1.08rem;
+    }
+
+    .text-muted.fw-bold.mb-2 {
+        font-size: 1rem !important;
+    }
+
+    .btn-success.rounded-pill.px-4 {
+        font-size: 1rem;
+        padding: 0.46rem 1.2rem !important;
+    }
+}
+
+/* Card animation and hover effect */
+.card-hover-effect {
+    animation: fadeInUp 0.6s cubic-bezier(.4, 1.3, .5, 1) forwards;
+    opacity: 0;
+    transition: box-shadow 0.3s, transform 0.22s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-7px) scale(1.033);
+    box-shadow: 0 14px 32px -5px rgba(71, 120, 222, 0.18), 0 1.2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Main heading styles inside the card */
+.card-title.fw-bold.text-dark.mb-2 {
+    font-size: 1.28rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    color: #134084 !important;
+}
+
+/* Company font and spacing */
+.company-name {
+    font-size: 1.09rem;
+    color: #315187 !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 0.01em;
+}
+
+/* Location, Salary, Description texts */
+.location {
+    font-size: 1.04rem;
+    color: #30b57b;
+    margin-bottom: 6px !important;
+    font-weight: 600;
+    letter-spacing: .01em;
+}
+
+.salary {
+    font-size: 1.04rem;
+    color: #12A8A8;
+    font-weight: 600;
+    margin-bottom: 7px !important;
+    letter-spacing: .01em;
+}
+
+/* Salary label emphasis */
+.salary .fw-semibold.text-secondary {
+    color: #22bbee !important;
+    font-weight: 600;
+    font-size: 1.02rem;
+}
+
+/* Description subtitle */
+.description.card-text.small.text-muted.mt-2 {
+    color: #7383a0 !important;
+    font-size: 1rem !important;
+    font-weight: 500;
+    margin-top: 8px !important;
+}
+
+/* Apply Now button for visual call-to-action */
+.btn-success.mt-3 {
+    background: linear-gradient(90deg, #22c77e 0%, #19bdff 80%);
+    border: none;
+    font-weight: 700;
+    font-size: 1.09rem;
+    padding: 0.65rem 2.1rem !important;
+    box-shadow: 0 2px 10px -4px #18cfff36;
+    border-radius: 24px !important;
+    transition: all 0.18s;
+}
+
+.btn-success.mt-3:hover,
+.btn-success.mt-3:focus {
+    background: linear-gradient(90deg, #19bdff 0%, #22c77e 80%);
+    color: #fff;
+    transform: scale(1.06);
+    box-shadow: 0 4px 24px -6px #19bdff66;
+}
+
+.job-heading {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2a3788;
+    letter-spacing: 0.05em;
+    margin-bottom: 0 !important;
+    /* Subtle shadow for lift */
+    text-shadow: 0 1.2px 5px #a7e1fa38;
+    align-items: center;
+    display: flex;
+    gap: 0.7rem;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #1f78ff, #23dbb8 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.icon-glow {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 18px #27c5fa88);
+    animation: jobIconPulse 2s infinite alternate;
+}
+
+@keyframes jobIconPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.19);
+    }
+}
+
+/* Custom search bar styling */
+.custom-search {
+    font-size: 1.09rem;
+    background: #f8fcff;
+    border: 1.5px solid #b4defb;
+    border-radius: 26px;
+    padding-left: 2.3rem !important;
+    box-shadow: 0 2.5px 13px #e4f0ff42;
+    transition: border 0.15s, box-shadow 0.17s;
+}
+
+.custom-search:focus {
+    border: 1.7px solid #17c7e6;
+    box-shadow: 0 4px 20px #0cc5fa28, 0 2px 8px #41c6ff0e;
+    outline: none;
+}
+
+/* Search icon in input */
+.position-relative .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #19bcff;
+    font-size: 1.25rem;
+    pointer-events: none;
+    opacity: 0.78;
+}
+
+.latest-bar-row {
+    margin-bottom: 2.5rem;
+    align-items: center;
+}
+
+.latest-search-form {
+    min-width: 240px;
+    max-width: 420px;
+    margin-left: auto;
+}
+
+/* Responsive for mobile */
+@media (max-width: 767px) {
+    .job-heading {
+        font-size: 1.3rem;
+    }
+
+    .custom-search {
+        font-size: 1rem;
+    }
+
+    .latest-bar-row {
+        gap: 16px;
+    }
+}
+
+
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .latest-jobs-container form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .latest-jobs-container form input {
+        width: 100% !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .latest-jobs-container form button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #locationFilter,
+    #categoryFilter {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+.card-body {
+    padding: 1.25rem;
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-body h5.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.card-body .text-primary {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.card-text {
+    margin-bottom: 0.75rem;
+}
+
+.btn {
+    margin-top: 0.5rem;
+}
+
+.company-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.location {
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.salary {
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.description {
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    /* removes underline */
+    display: inline-block;
+    /* ensures padding applies cleanly */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    text-decoration: none;
+    /* keep it off on hover too */
+}
+
+/* --- Job List Styling --- */
+.job-list {
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.job-list:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.5em;
+}
+
+.pagination .btn {
+    border-radius: 20px;
+}
+
+#job-container .job-list img {
+    border: 2px solid #eee;
+}
+
+/* --- Job Card Styling --- */
+.job-card {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.job-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.job-card-content {
+    flex: 1;
+}
+
+.job-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.job-type {
+    background-color: #2d3748;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.job-desc {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.job-details {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* --- Pagination Styling --- */
+.d-flex.justify-content-between.align-items-center.mt-4.flex-wrap.gap-2 {
+    /* Ensure this container aligns items vertically center */
+    align-items: center;
+}
+
+
+/* Pagination buttons styles */
+.custom-pagination {
+    margin: 0;
+    /* Remove extra margins */
+}
+
+.text-muted.small.m-0 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1562c0;
+}
+
+#showing-range {
+    color: #19bdff;
+    font-weight: 700;
+}
+
+.page-btn {
+    color: #1562c0;
+    background-color: transparent;
+    padding: 4px 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    cursor: pointer;
+    outline: none;
+    min-width: 60px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: none !important;
+    /* Remove transitions */
+}
+
+/* Neutralize any hover effect from global or Bootstrap styles */
+.page-btn:hover,
+.page-btn:focus {
+    background: transparent !important;
+    color: #1a395f !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+/* Disabled state (unchanged) */
+.page-btn:disabled {
+    background: none;
+    color: #a3a3a3;
+    cursor: not-allowed;
+}
+
+
+/* Page number buttons */
+#pageNumbers button {
+    color: #1562c0;
+    border: 2px solid transparent;
+    /* add transparent border for sizing */
+    padding: 4px 12px;
+    /* slightly more padding */
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    outline: none;
+    min-width: 36px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+    border-radius: 4px;
+    /* subtle rounding */
+}
+
+#pageNumbers button.active {
+    color: #d11414 !important;
+    /* White text for contrast */
+    background-color: #1562c0 !important;
+    /* Blue background */
+    border-color: #1562c0 !important;
+    cursor: default;
+    font-weight: 700;
+    box-shadow: 0 0 5px rgba(21, 98, 192, 0.6);
+}
+
+/* Disabled page number button */
+#pageNumbers button:disabled {
+    color: #a3a3a3;
+    cursor: not-allowed;
+    background: transparent;
+    border-color: transparent;
+}
+
+/* Hover effect for non-active, non-disabled */
+#pageNumbers button:hover:not(.active):not(:disabled) {
+    color: #114a96;
+    text-decoration: none;
+    background-color: rgba(21, 98, 192, 0.1);
+    border-color: #1562c0;
+}
+
+
+
+
+.footer-main {
+    background: linear-gradient(110deg, #eec3c3 0%, #acc7e7 100%);
+    border-top: 1.5px solid #e9e6ee;
+    box-shadow: 0 3px 32px -12px #aac9ee44;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.footer-logo {
+    filter: drop-shadow(0 2px 12px #5bb8ea18);
+    border-radius: 12px;
+}
+
+.footer-title {
+    font-weight: 700;
+    color: #264472;
+    letter-spacing: 0.02em;
+    font-size: 1.13rem;
+    margin-bottom: 0.85rem !important;
+}
+
+.footer-desc {
+    font-size: 1.06rem;
+    color: #39485a;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.footer-links li {
+    margin-bottom: .6em;
+}
+
+.footer-link {
+    color: #355ea5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.13s;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+    color: #22b38c;
+    text-decoration: underline;
+}
+
+.footer-social i {
+    font-size: 1.5rem;
+    color: #258dbe;
+    background: #ffffffee;
+    padding: 7px 10px 6px 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px #fffad0e0;
+    transition: background 0.17s, color 0.18s, box-shadow 0.16s;
+}
+
+.footer-social i:hover {
+    color: #fff;
+    background: linear-gradient(90deg, #2077fd 0, #5bd6cc 100%);
+    box-shadow: 0 0 20px #218dda99;
+}
+
+.footer-newsletter .form-control {
+    background: #f7fafc;
+    border: 1.5px solid #c8e2f5;
+    border-radius: 17px;
+    font-size: 1.04rem;
+    min-width: 160px;
+    transition: border .14s, box-shadow .14s;
+}
+
+.footer-newsletter .form-control:focus {
+    border-color: #189fdc;
+    box-shadow: 0 2px 10px #22cfbe19;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #1687d0 0, #29e9bc 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 18px;
+    transition: background 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 12px #51e5e433;
+}
+
+.btn-gradient:hover,
+.btn-gradient:focus {
+    background: linear-gradient(90deg, #29e9bc 0, #1687d0 100%);
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .footer-main {
+        padding-bottom: 16px;
+    }
+
+    .footer-title {
+        font-size: 1.03rem;
+    }
+
+    .footer-desc {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Dashboard CSS */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 1.5rem 1.5rem 1.8rem 1.5rem;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(90deg, #267cdd 0%, #23d3d3 100%);
+    padding: 1.3rem 1.6rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 28px -8px #92caf24a;
+    margin-bottom: 2.1rem;
+    position: relative;
+}
+
+.dashboard-icon i {
+    font-size: 2.6rem;
+    color: #ffffff;
+    background: #146abc;
+    padding: 0.65rem 0.9rem;
+    border-radius: 1em;
+    box-shadow: 0 2px 10px #39e1e695;
+}
+
+.dashboard-title {
+    font-size: 2.14rem;
+    font-weight: 800;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 8px #29d3c1ad;
+    flex: 1;
+}
+
+.dashboard-subtitle {
+    font-size: 1.06rem;
+    color: #f2f8fb;
+    font-weight: 500;
+    margin-left: auto;
+    padding-left: 0.8rem;
+}
+
+@media (max-width: 540px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+        padding: 1.1rem 0.7rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.28rem;
+    }
+
+    .dashboard-icon i {
+        font-size: 2.1rem;
+    }
+}
+
+h2,
+h3 {
+    color: #1864ab;
+    font-weight: 800;
+    margin-bottom: 1.3rem;
+    letter-spacing: 0.02em;
+}
+
+.welcome-msg {
+    font-size: 1.22rem;
+    margin-bottom: 1.8rem;
+    color: #374151;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background: linear-gradient(90deg, #e9f8ff 0, #f4fcf9 100%);
+    border-radius: 13px;
+    padding: 0.85rem 1.4rem;
+}
+
+.job-card,
+.application-card,
+.user-card {
+    background: linear-gradient(112deg, #fff 80%, #eaf7fa 100%);
+    padding: 1.5rem 1.45rem 1.15rem 1.4rem;
+    margin-bottom: 2.2rem;
+    border-radius: 18px;
+    border: 1.5px solid #ecf2fe;
+    box-shadow: 0 4px 28px -7px #1b85c266, 0 1.5px 8px #1111110d;
+    transition: box-shadow .17s, border-color .17s, transform .20s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-height: 210px;
+    position: relative;
+    opacity: 0;
+    animation: fadeInCard 0.55s cubic-bezier(.4, 1.3, .5, 1) forwards;
+}
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(36px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.job-card:hover,
+.application-card:hover,
+.user-card:hover {
+    box-shadow: 0 10px 48px -12px #18b1e844, 0 3px 32px 0 #21a9f728;
+    border-color: #bdeaf7;
+    transform: translateY(-4px) scale(1.025);
+    z-index: 3;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+    .dashboard-container {
+        padding: 0.4rem;
+    }
+
+    .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .job-card,
+    .application-card {
+        min-height: 180px;
+        padding: 1.05rem 0.8rem 1rem 0.9rem;
+    }
+}
+
+/* Title and badges */
+.job-title {
+    font-size: 1.23rem;
+    font-weight: 700;
+    color: #15407a;
+    margin-bottom: .18rem;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.48rem;
+    line-height: 1.25;
+}
+
+.card-badge {
+    font-size: 0.98rem;
+    color: #fff;
+    background: linear-gradient(90deg, #3c74df 40%, #1dd6d6 100%);
+    padding: 2.5px 15px 2.5px 12px;
+    border-radius: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+    box-shadow: 0 0 0.5em #0fdbe323;
+}
+
+.card-badge.bg-warning {
+    background: linear-gradient(92deg, #ffd966 60%, #ffeebb 100%);
+    color: #805200 !important;
+    font-weight: 700;
+    border: 1.5px solid #ffe6ad;
+}
+
+/* Field rows */
+.job-label,
+.application-info,
+.user-info {
+    color: #4a608a;
+    font-size: 1.07rem;
+    margin: .17rem 0;
+    line-height: 1.36;
+}
+
+.salary-label {
+    color: #17a377;
+    font-weight: 600;
+}
+
+.job-description {
+    font-size: 1.08rem;
+    color: #627098;
+    margin-top: .29rem;
+    line-height: 1.55;
+    font-weight: 450;
+}
+
+/* Small and muted */
+small {
+    color: #9197ad;
+    letter-spacing: 0.02em;
+}
+
+.user-info {
+    font-size: 1.08rem;
+    margin-bottom: 0.7rem;
+}
+
+.alert {
+    font-size: 1.07rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.action-btn,
+.btn,
+button[type="submit"] {
+    font-weight: 600;
+    font-size: 1.07rem !important;
+    transition: background 0.14s, color 0.10s, border 0.12s;
+    border-radius: 7.5px !important;
+    min-width: 90px;
+}
+
+/* Make Edit/Delete buttons fill card width evenly, larger and prominent */
+.d-flex.gap-2.mt-3>div,
+.d-flex.gap-2.mt-3>form {
+    flex: 1 1 0;
+}
+
+.d-flex.gap-2.mt-3 a.btn,
+.d-flex.gap-2.mt-3 button {
+    width: 100%;
+    min-width: 120px;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.01em;
+    padding: 0.65rem 0;
+    border-radius: 18px !important;
+    margin: 0;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #236efa 0%, #23e3d8 100%);
+    border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: linear-gradient(90deg, #23e3d8 0%, #236efa 90%);
+}
+
+.btn-danger {
+    background: linear-gradient(90deg, #fb2d2d 0%, #fa8862 100%);
+    border: none;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background: linear-gradient(90deg, #fa8862 0%, #fb2d2d 100%);
+    color: #fff;
+    box-shadow: 0 3px 16px -5px #fdac7a22;
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 0.46rem 1rem;
+    color: #fff !important;
+    background: linear-gradient(90deg, #f44848 0, #fa6c55 100%);
+    border-radius: 11px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 1.85rem;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 0 4px 16px #fa6c5526;
+    transition: background 0.13s, color 0.11s;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(90deg, #fa6c55 0, #f44848 100%);
+    color: #fff !important;
+}
+
+.badge.bg-primary {
+    background: linear-gradient(90deg, #15b2fc 10%, #0ee0e0 80%);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: .03em;
+    border-radius: 11px;
+    padding: 0.38em 1em 0.36em 1em;
+}
+
+.badge.bg-success {
+    background: linear-gradient(93deg, #19c07b 19%, #49e35e 80%);
+    color: #fff;
+    font-size: 0.8em;
+    padding: 0.4em 0.95em 0.37em 0.95em;
+    border-radius: 11px;
+}
+
+.badge.bg-dark {
+    background: #223150;
+    font-size: 0.8em;
+    padding: .41em 0.99em 0.39em 0.99em;
+    border-radius: 12px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+
+    h2,
+    h3 {
+        font-size: 1.32rem;
+    }
+
+    .job-title {
+        font-size: 1rem;
+    }
+
+    .job-description,
+    .job-label {
+        font-size: .98rem;
+    }
+
+    .d-flex.gap-2.mt-3 a.btn,
+    .d-flex.gap-2.mt-3 button {
+        font-size: 1rem !important;
+    }
+
+    .welcome-msg {
+        font-size: 1rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+
+/* Post Job CSS */
+.postjob-container {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.3rem 1rem 2rem 1rem;
+    background: linear-gradient(110deg, #e6faff 0%, #ffe1ea 100%);
+}
+
+.postjob-box {
+    background: #fff;
+    padding: 2.8rem 2.3rem 2.1rem 2.3rem;
+    border-radius: 18px;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 6px 42px -8px #63aad938, 0 1.5px 8px #1864ab10;
+    transition: box-shadow 0.18s, transform 0.18s;
+    border: 1.5px solid #e4f0fe;
+    position: relative;
+    animation: fadeInUp 0.56s cubic-bezier(.42, 1.26, .57, .99) both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(44px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.postjob-box h2 {
+    text-align: center;
+    margin-bottom: 1.7rem;
+    font-weight: bold;
+    font-size: 2.05rem;
+    color: #176ad8;
+    letter-spacing: 0.03em;
+}
+
+.postjob-box input[type="text"],
+.postjob-box textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.19rem;
+    padding: 0.94rem 1.18rem;
+    border: 1.5px solid #e4e8fa;
+    border-radius: 9px;
+    font-size: 1.13rem;
+    font-family: inherit;
+    background: linear-gradient(90deg, #f6fbff 80%, #fafafe 100%);
+    box-shadow: 0 1px 7px #22b0ce0a;
+    color: #2a3a55;
+    transition: border 0.16s, box-shadow 0.16s;
+    outline: none;
+}
+
+.postjob-box input[type="text"]:focus,
+.postjob-box textarea:focus {
+    border: 1.8px solid #1abcdb;
+    box-shadow: 0 3px 18px #1acaeb1a;
+    background: #fafdff;
+}
+
+.postjob-box textarea {
+    min-height: 90px;
+    font-size: 1.06rem;
+}
+
+.postjob-box button {
+    width: 100%;
+    padding: 0.93rem;
+    background: linear-gradient(90deg, #1864ab 0%, #10c2c2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 1.17rem;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    box-shadow: 0 3px 18px #1864ab29;
+    transition: background 0.15s, box-shadow 0.13s, transform 0.1s;
+    margin-top: 0.65rem;
+}
+
+.postjob-box button:hover,
+.postjob-box button:focus {
+    background: linear-gradient(90deg, #10c2c2 0%, #1864ab 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 2px 24px #10c2c26e;
+}
+
+
+
+/* Register CSS */
+
+.register-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem 2rem 1rem;
+    background: linear-gradient(111deg, #e6f4fa 55%, #ffe0ec 100%);
+}
+
+.register-box {
+    background: #fff;
+    padding: 2.7rem 2.2rem 2.1rem 2.2rem;
+    border-radius: 17px;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 7px 40px -8px #9bdfff3c, 0 1.5px 12px #1864ab12;
+    border: 1.5px solid #e5f1fc;
+    animation: fadeInUp 0.55s cubic-bezier(.42, 1.08, .52, 1.1) both;
+    transition: box-shadow 0.14s, transform 0.15s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(44px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 1.6rem;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #146abc;
+    letter-spacing: 0.03em;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="password"],
+.register-box select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.13rem;
+    padding: 1.04rem 1.17rem;
+    border: 1.5px solid #e4e8fa;
+    border-radius: 9px;
+    font-size: 1.13rem;
+    background: linear-gradient(90deg, #f6fbff 85%, #fafafe 100%);
+    box-shadow: 0 1px 9px #2898b30f;
+    color: #2d3a54;
+    transition: border 0.14s, box-shadow 0.14s;
+    font-family: inherit;
+    outline: none;
+}
+
+.register-box input:focus,
+.register-box select:focus {
+    border: 1.7px solid #1bcfd3;
+    background: #fafdff;
+    box-shadow: 0 2px 14px #21ccbe1c;
+}
+
+.register-box select {
+    background-color: #fff;
+    font-size: 1.13rem;
+    font-weight: 500;
+    color: #19507a;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.register-box select:invalid {
+    color: #99a5bb;
+}
+
+.register-box option {
+    color: #2c4267;
+}
+
+.register-box button {
+    width: 100%;
+    padding: 1.07rem 0;
+    background: linear-gradient(90deg, #1568ca 0%, #21d3c1 100%);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    font-size: 1.17rem;
+    cursor: pointer;
+    margin-top: 0.35rem;
+    box-shadow: 0 2px 14px #21d3c136;
+    transition: background 0.13s, box-shadow 0.12s, transform 0.09s;
+}
+
+.register-box button:hover,
+.register-box button:focus {
+    background: linear-gradient(90deg, #21d3c1 0%, #1568ca 80%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 5px 28px #21d3c13c;
+}
+
+@media (max-width: 540px) {
+    .register-container {
+        padding: 0.9rem;
+    }
+
+    .register-box {
+        padding: 1.2rem 0.55rem 1.2rem 0.55rem;
+    }
+
+    .register-box h2 {
+        font-size: 1.4rem;
+        padding-bottom: 10px;
+    }
+
+    .register-box input,
+    .register-box select {
+        font-size: 1rem;
+        padding: 0.74rem 0.8rem;
+    }
+
+    .register-box button {
+        font-size: 1.05rem;
+    }
+}
+
+
+/* Login CSS */
+
+.login-container {
+    min-height: 78vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem 2.5rem 1rem;
+    background: linear-gradient(110deg, #e6faff 0%, #fbeaec 100%);
+}
+
+.login-box {
+    background: #fff;
+    padding: 2.7rem 2.2rem 2.1rem 2.2rem;
+    border-radius: 17px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 6px 38px -7px #8ed8f933, 0 1.5px 12px #1864ab12;
+    border: 1.5px solid #e2effa;
+    animation: fadeInUp 0.52s cubic-bezier(.42, 1.08, .52, 1.1) both;
+    transition: box-shadow 0.14s, transform 0.15s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(36px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 1.55rem;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #1457b9;
+    letter-spacing: 0.025em;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.15rem;
+    padding: 1rem 1.21rem;
+    border: 1.5px solid #e1e9fb;
+    border-radius: 8px;
+    font-size: 1.13rem;
+    background: linear-gradient(90deg, #f4f9ff 85%, #fafafe 100%);
+    box-shadow: 0 1px 8px #19b5c10a;
+    color: #2a3a55;
+    transition: border 0.15s, box-shadow 0.14s;
+    outline: none;
+}
+
+.login-box input:focus {
+    border: 1.7px solid #1894e1;
+    box-shadow: 0 2px 14px #188fde18;
+    background: #fafdff;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 1.07rem 0;
+    background: linear-gradient(90deg, #1568ca 0%, #21c9cb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    margin-top: 0.30rem;
+    box-shadow: 0 2px 13px #21c9cb36;
+    transition: background 0.13s, box-shadow 0.12s, transform 0.1s;
+}
+
+.login-box button:hover,
+.login-box button:focus {
+    background: linear-gradient(90deg, #21c9cb 0%, #1568ca 90%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.035);
+    box-shadow: 0 4px 30px #21c9cb4c;
+}
+
+@media (max-width: 540px) {
+    .login-container {
+        padding: 1rem;
+    }
+
+    .login-box {
+        padding: 1.15rem 0.6rem 1.2rem 0.6rem;
+    }
+
+    .login-box h2 {
+        font-size: 1.38rem;
+    }
+
+    .login-box input,
+    .login-box button {
+        font-size: 1rem;
+        padding: 0.82rem 0.7rem;
+    }
+}
+
+/* Edit Job CSS */
+
+.editjob-container {
+    min-height: 60vh;
+    /* or 100vh for full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.editjob-box {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.09);
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+    /* Add subtle entrance animation */
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.editjob-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #1864ab;
+}
+
+.editjob-box input[type="text"],
+.editjob-box textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.2rem;
+    padding: 0.75rem 1rem;
+    border: 1.2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.editjob-box input[type="text"]:focus,
+.editjob-box textarea:focus {
+    outline: none;
+    border-color: #1864ab;
+    box-shadow: 0 0 6px rgba(24, 100, 171, 0.4);
+    background-color: #f9fbff;
+}
+
+.editjob-box button {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(90deg, #1864ab 0%, #21c9cb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.12rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.15s ease;
+}
+
+.editjob-box button:hover,
+.editjob-box button:focus {
+    background: linear-gradient(90deg, #21c9cb 0%, #1864ab 100%);
+    transform: scale(1.03);
+}
+
+/* Fade in animation keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Responsive styles for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .editjob-box {
+        max-width: 600px;
+        padding: 2rem 1.8rem;
+    }
+
+    .editjob-box h2 {
+        font-size: 1.8rem;
+    }
+
+    .editjob-box input[type="text"],
+    .editjob-box textarea {
+        font-size: 1rem;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .editjob-box button {
+        font-size: 1.05rem;
+    }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 767px) {
+    .editjob-container {
+        min-height: auto;
+        padding: 1rem 0.8rem;
+        width: 100%;
+        margin: 0 0.5rem;
+    }
+
+    .editjob-box {
+        max-width: 100%;
+        padding: 1.8rem 1rem;
+        border-radius: 10px;
+    }
+
+    .editjob-box h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .editjob-box input[type="text"],
+    .editjob-box textarea {
+        font-size: 1rem;
+        padding: 0.6rem 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .editjob-box button {
+        font-size: 1rem;
+        padding: 0.65rem;
+    }
+}

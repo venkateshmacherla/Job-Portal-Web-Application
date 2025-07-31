@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Job Listings{% endblock %}
+{% block content %}
+<h2>All Jobs</h2>
+{% for job in jobs %}
+<div class="job-card">
+    <h3>{{ job.title }} - {{ job.company }}</h3>
+    <p>{{ job.description }}</p>
+    <p><strong>Location:</strong> {{ job.location }}</p>
+    <p><strong>Salary:</strong> {{ job.salary }}</p>
+    <a href="/apply/{{ job.id }}"><button>Apply</button></a>
+</div>
+{% else %}
+<p>No jobs found.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Job Portal{% endblock %}
+
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Latest Jobs Section -->
+<section class="latest-jobs py-5">
+    <h1 class="main-heading mb-3">
+        <span class="gradient-text">Welcome to the Job Portal</span>
+    </h1>
+    <p class="lead mb-4">
+        Discover Your Next Opportunity — <span class="fw-semibold text-dark">Explore thousands of jobs</span>, connect
+        with
+        <span class="fw-semibold text-dark">top companies</span>, and <span class="fw-semibold text-dark">build your
+            career
+            today</span>.
+    </p>
+
+    <div class="container latest-jobs-container">
+        <!-- Title + Search -->
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6 col-12">
+                <h2 class="job-heading">🚀 Latest Job Listings</h2>
+            </div>
+            <div class="col-md-6 col-12 mt-2 mt-md-0 text-md-end">
+                <form class="d-flex justify-content-end align-items-center latest-search-form" role="search"
+                    method="GET" action="/">
+                    <div class="position-relative w-100">
+                        <input class="form-control form-control-md ps-4 pe-5 custom-search" type="search" name="q"
+                            placeholder="Search by location, company, or role…" aria-label="Search"
+                            value="{{ request.args.get('q', '') }}" id="job-search-input">
+                        <span class="search-icon">
+
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const searchInput = document.getElementById('job-search-input');
+                    if (searchInput) {
+                        searchInput.addEventListener('input', function () {
+                            // When input is cleared, submit form to reset results
+                            if (this.value === '') {
+                                // Find the closest form and submit it
+                                const form = this.closest('form');
+                                if (form) form.submit();
+                            }
+                        });
+                    }
+                });
+            </script>
+        </div>
+
+        {% if jobs %}
+        <div class="row g-4">
+            {% for job in jobs %}
+            <div class="col-12 col-md-6">
+                <div class="card border-0 shadow-sm h-100 card-hover-effect">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark mb-2">{{ job.title }}</h5>
+                        <p class="mb-2 company-name">{{ job.company }}</p>
+                        <p class="mb-1 location">{{ job.location }}</p>
+                        <p class="mb-1 salary">
+                            <span class="fw-semibold text-secondary">Salary:</span>
+                            <span class="text-success">{{ job.salary }}</span>
+                        </p>
+                        <p class="description card-text small text-muted mt-2">{{ job.description }}</p>
+                        <a href="{{ url_for('apply_job', job_id=job.id) }}" class="btn btn-sm btn-success mt-3">Apply
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info">No job listings available at the moment.</div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+<!-- Hot Jobs Section -->
+<section class="find-job section bg-light py-5">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+            <h2 class="job-heading trendy-heading mb-4">
+                <span class="spark-icon" aria-label="spark">✨</span>
+                Trending Jobs
+            </h2>
+            <div class="d-flex flex-column flex-md-row gap-2 w-100">
+                <select id="locationFilter" class="form-select w-100 w-md-33">
+                    <option value="all">All Locations</option>
+                </select>
+
+                <select id="categoryFilter" class="form-select w-100 w-md-33">
+                    <option value="all">All Categories</option>
+                </select>
+
+                <select id="experienceFilter" class="form-select w-100 w-md-33">
+                    <option value="all">All Experience Levels</option>
+                    <option value="fresher">Fresher</option>
+                    <option value="1-3">1–3 Years</option>
+                    <option value="3-5">3–5 Years</option>
+                    <option value="5plus">5+ Years</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" id="job-container"></div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2" style="margin-top: 32px;">
+            <p class="text-muted small m-0 align-middle show-info">
+                Showing <span id="showing-range">1–10</span> of
+                <span id="total-jobs">50</span> Jobs
+            </p>
+            <div class="pagination custom-pagination d-flex align-items-center flex-wrap gap-2">
+                <button class="page-btn prev-btn" id="prevBtn">‹ PREV</button>
+                <div id="pageNumbers" class="d-flex gap-2"></div>
+                <button class="page-btn next-btn" id="nextBtn">NEXT ›</button>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const hotJobs = [
+                    { id: 1, title: "Frontend Developer", experience: "2-4 years", description: "Work with React.js and build responsive UIs.", type: "Full Time", category: "Development", location: "Bangalore", salary: "₹8-10 LPA", company: "TechNova" },
+                    { id: 2, title: "Backend Developer", experience: "2-4 years", description: "Develop APIs using Node.js and Express.", type: "Full Time", category: "Development", location: "Hyderabad", salary: "₹10-12 LPA", company: "CodeBase" },
+                    { id: 3, title: "UI/UX Designer", experience: "3-5 years", description: "Design modern and intuitive user interfaces.", type: "Full Time", category: "Design", location: "Mumbai", salary: "₹6-8 LPA", company: "DesignHub" },
+                    { id: 4, title: "DevOps Engineer", experience: "3-6 years", description: "Manage CI/CD pipelines and cloud infra.", type: "Full Time", category: "DevOps", location: "Remote", salary: "₹9-12 LPA", company: "CloudOps" },
+                    { id: 5, title: "Data Analyst", experience: "1-3 years", description: "Analyze data and provide business insights.", type: "Full Time", category: "Data", location: "Pune", salary: "₹7-9 LPA", company: "DataWorks" },
+                    { id: 6, title: "Machine Learning Engineer", experience: "5+ years", description: "Build ML models and deploy in production.", type: "Full Time", category: "AI/ML", location: "Bangalore", salary: "₹12-15 LPA", company: "AI Labs" },
+                    { id: 7, title: "Product Manager", experience: "6+ years", description: "Lead cross-functional teams to build products.", type: "Full Time", category: "Product", location: "Gurgaon", salary: "₹15-18 LPA", company: "Prodify" },
+                    { id: 8, title: "QA Tester", experience: "0-2 years", description: "Perform manual and automation testing.", type: "Full Time", category: "Testing", location: "Chennai", salary: "₹5-7 LPA", company: "BugSquashers" },
+                    { id: 9, title: "Content Writer", experience: "1-3 years", description: "Write blogs, website content, and case studies.", type: "Full Time", category: "Content", location: "Remote", salary: "₹4-5 LPA", company: "WriteWave" },
+                    { id: 10, title: "HR Executive", experience: "1-3 years", description: "Handle recruitment and employee engagement.", type: "Full Time", category: "HR", location: "Noida", salary: "₹4-6 LPA", company: "PeopleFirst" },
+                    { id: 11, title: "Digital Marketing Executive", experience: "1-3 years", description: "Run paid campaigns and manage SEO.", type: "Full Time", category: "Marketing", location: "Delhi", salary: "₹5-7 LPA", company: "GrowthHacks" },
+                    { id: 12, title: "Cloud Architect", experience: "6+ years", description: "Design and implement cloud solutions.", type: "Full Time", category: "Cloud", location: "Bangalore", salary: "₹18-22 LPA", company: "SkyNet" },
+                    { id: 13, title: "Sales Manager", experience: "4-7 years", description: "Drive sales strategies and lead teams.", type: "Full Time", category: "Sales", location: "Mumbai", salary: "₹10-14 LPA", company: "SellWell" },
+                    { id: 14, title: "Business Analyst", experience: "3-5 years", description: "Analyze business processes and suggest solutions.", type: "Full Time", category: "Business", location: "Chandigarh", salary: "₹8-10 LPA", company: "BizConsult" },
+                    { id: 15, title: "Customer Support Executive", experience: "0-1 years", description: "Support customers via chat, mail, and calls.", type: "Full Time", category: "Support", location: "Pune", salary: "₹3.5-5 LPA", company: "HelpDeskPro" },
+                    { id: 16, title: "IT Support Engineer", experience: "1-3 years", description: "Provide hardware and software support.", type: "Full Time", category: "IT", location: "Ahmedabad", salary: "₹4-6 LPA", company: "SysCare" },
+                    { id: 17, title: "Graphic Designer", experience: "1-3 years", description: "Create visuals for digital platforms.", type: "Full Time", category: "Design", location: "Kolkata", salary: "₹4-6 LPA", company: "CreativeCore" },
+                    { id: 18, title: "Android Developer", experience: "2-4 years", description: "Build apps with Kotlin and Java.", type: "Full Time", category: "Mobile", location: "Hyderabad", salary: "₹6-8 LPA", company: "AppStorm" },
+                    { id: 19, title: "iOS Developer", experience: "2-4 years", description: "Develop iOS apps with Swift.", type: "Full Time", category: "Mobile", location: "Chennai", salary: "₹7-9 LPA", company: "SwiftTech" },
+                    { id: 20, title: "Video Editor", experience: "1-3 years", description: "Edit and produce marketing videos.", type: "Full Time", category: "Media", location: "Mumbai", salary: "₹3.5-5 LPA", company: "VidEditz" },
+                    { id: 21, title: "SEO Specialist", experience: "2-4 years", description: "Optimize site rankings and content.", type: "Full Time", category: "Marketing", location: "Delhi", salary: "₹4-6 LPA", company: "RankHigh" },
+                    { id: 22, title: "Social Media Manager", experience: "2-5 years", description: "Manage content and grow online presence.", type: "Full Time", category: "Marketing", location: "Remote", salary: "₹5-7 LPA", company: "Socioly" },
+                    { id: 23, title: "Technical Writer", experience: "3-5 years", description: "Write product guides and documentation.", type: "Full Time", category: "Content", location: "Bangalore", salary: "₹6-8 LPA", company: "DocuTech" },
+                    { id: 24, title: "Cybersecurity Analyst", experience: "4-7 years", description: "Protect systems from cyber threats.", type: "Full Time", category: "Security", location: "Gurgaon", salary: "₹10-13 LPA", company: "SecureNet" },
+                    { id: 25, title: "AI Researcher", experience: "6+ years", description: "Work on NLP and computer vision models.", type: "Full Time", category: "AI/ML", location: "Pune", salary: "₹15-20 LPA", company: "AIThinkTank" },
+                    { id: 26, title: "Project Coordinator", experience: "2-4 years", description: "Coordinate tasks and maintain timelines.", type: "Full Time", category: "Management", location: "Chennai", salary: "₹5-7 LPA", company: "PlanIt" },
+                    { id: 27, title: "Technical Support Engineer", experience: "1-3 years", description: "Resolve client issues and provide tech support.", type: "Full Time", category: "Support", location: "Bangalore", salary: "₹4-6 LPA", company: "TechHelp" },
+                    { id: 28, title: "Recruiter", experience: "2-4 years", description: "Source and screen potential candidates.", type: "Full Time", category: "HR", location: "Jaipur", salary: "₹4.5-6 LPA", company: "HireRight" },
+                    { id: 29, title: "Legal Associate", experience: "3-5 years", description: "Draft contracts and handle legal work.", type: "Full Time", category: "Legal", location: "Delhi", salary: "₹6-8 LPA", company: "LawVerse" },
+                    { id: 30, title: "Operations Manager", experience: "5+ years", description: "Handle daily ops and process improvement.", type: "Full Time", category: "Operations", location: "Kolkata", salary: "₹9-11 LPA", company: "Opsify" },
+                    { id: 31, title: "Game Developer", experience: "3-5 years", description: "Develop engaging 2D/3D games.", type: "Full Time", category: "Gaming", location: "Pune", salary: "₹10-14 LPA", company: "PlayZone" },
+                    { id: 32, title: "Graphic Designer", experience: "0-1 years", description: "Create marketing visuals and assets.", type: "Part Time", category: "Design", location: "Delhi", salary: "₹4-6 LPA", company: "DesignMinds" },
+                    { id: 33, title: "Security Analyst", experience: "4-7 years", description: "Monitor and prevent cyber threats.", type: "Full Time", category: "Security", location: "Mumbai", salary: "₹9-11 LPA", company: "CyberSafe" },
+                    { id: 34, title: "Product Manager", experience: "6+ years", description: "Lead product development lifecycle.", type: "Full Time", category: "Management", location: "Remote", salary: "₹20-25 LPA", company: "InnovateX" },
+                    { id: 35, title: "iOS Developer", experience: "2-5 years", description: "Develop native iOS apps.", type: "Full Time", category: "Mobile", location: "Chennai", salary: "₹10-13 LPA", company: "SwiftMob" },
+                    { id: 36, title: "Android Developer", experience: "2-5 years", description: "Create Android mobile applications.", type: "Full Time", category: "Mobile", location: "Noida", salary: "₹9-12 LPA", company: "DroidBuild" },
+                    { id: 37, title: "Digital Marketing Intern", experience: "Fresher", description: "Support online campaigns and content creation.", type: "Internship", category: "Marketing", location: "Gurgaon", salary: "₹10k/month", company: "ClickBuzz" },
+                    { id: 38, title: "SEO Specialist", experience: "2-4 years", description: "Improve website rankings and traffic.", type: "Full Time", category: "Marketing", location: "Jaipur", salary: "₹5-7 LPA", company: "RankFirst" },
+                    { id: 39, title: "Video Editor", experience: "1-3 years", description: "Edit and produce video content.", type: "Contract", category: "Media", location: "Mumbai", salary: "₹6-8 LPA", company: "FrameCut" },
+                    { id: 40, title: "UI Designer", experience: "3-5 years", description: "Design user interfaces for web and mobile.", type: "Full Time", category: "Design", location: "Bangalore", salary: "₹10-12 LPA", company: "PixelEdge" },
+                    { id: 41, title: "Customer Support Executive", experience: "0-2 years", description: "Handle customer inquiries and support.", type: "Full Time", category: "Support", location: "Ahmedabad", salary: "₹3.5-5 LPA", company: "HelpDeskPro" },
+                    { id: 42, title: "Finance Analyst", experience: "2-4 years", description: "Analyze financial performance and reports.", type: "Full Time", category: "Finance", location: "Kolkata", salary: "₹8-10 LPA", company: "FinSharp" },
+                    { id: 43, title: "Legal Associate", experience: "2-4 years", description: "Assist in drafting and reviewing legal documents.", type: "Full Time", category: "Legal", location: "Delhi", salary: "₹7-9 LPA", company: "LawBridge" },
+                    { id: 44, title: "Business Analyst", experience: "3-5 years", description: "Bridge business needs and tech solutions.", type: "Full Time", category: "Analysis", location: "Hyderabad", salary: "₹9-11 LPA", company: "BizIntel" },
+                    { id: 45, title: "Systems Engineer", experience: "3-6 years", description: "Maintain and improve IT infrastructure.", type: "Full Time", category: "Infrastructure", location: "Chandigarh", salary: "₹6-8 LPA", company: "InfraTech" },
+                    { id: 46, title: "Robotics Engineer", experience: "5+ years", description: "Develop robotic automation systems.", type: "Full Time", category: "Engineering", location: "Pune", salary: "₹14-18 LPA", company: "RoboCore" },
+                    { id: 47, title: "IT Support Specialist", experience: "1-3 years", description: "Troubleshoot and resolve IT issues.", type: "Full Time", category: "Support", location: "Nagpur", salary: "₹4.5-6 LPA", company: "FixTech" },
+                    { id: 48, title: "Intern - HR & Admin", experience: "Fresher", description: "Support HR ops and documentation.", type: "Internship", category: "HR", location: "Jaipur", salary: "₹1.8-2.2 LPA", company: "TeamCore" },
+                    { id: 49, title: "UX Researcher", experience: "2-4 years", description: "Conduct user studies and usability tests.", type: "Full Time", category: "Design", location: "Remote", salary: "₹9-12 LPA", company: "UserLab" },
+                    { id: 50, title: "Salesforce Developer", experience: "5+ years", description: "Develop custom Salesforce solutions.", type: "Full Time", category: "CRM", location: "Mumbai", salary: "₹13-16 LPA", company: "CRMWorld" }
+                ];
+
+                const jobsPerPage = 10;
+                let currentPage = 1;
+                let filteredJobs = [...hotJobs];
+
+                const locationFilter = document.getElementById("locationFilter");
+                const categoryFilter = document.getElementById("categoryFilter");
+                const experienceFilter = document.getElementById("experienceFilter");
+                const jobContainer = document.getElementById("job-container");
+                const showingRange = document.getElementById("showing-range");
+                const totalJobs = document.getElementById("total-jobs");
+                const prevBtn = document.getElementById("prevBtn");
+                const nextBtn = document.getElementById("nextBtn");
+                const pageNumbers = document.getElementById("pageNumbers");
+
+                function renderJobs() {
+                    jobContainer.innerHTML = "";
+                    const start = (currentPage - 1) * jobsPerPage;
+                    const end = start + jobsPerPage;
+                    const jobsToDisplay = filteredJobs.slice(start, end);
+
+                    if (jobsToDisplay.length === 0) {
+                        jobContainer.innerHTML = `<div class="alert alert-warning">No jobs found for selected filters.</div>`;
+                        showingRange.textContent = "0–0";
+                        totalJobs.textContent = filteredJobs.length;
+                        pageNumbers.innerHTML = "";
+                        prevBtn.disabled = true;
+                        nextBtn.disabled = true;
+                        return;
+                    }
+
+                    jobsToDisplay.forEach((job) => {
+                        const jobHTML = `
+                        <div class="col-md-12 mb-4">
+                            <div class="d-flex flex-wrap align-items-start bg-white border rounded shadow-sm p-4 card-hover-effect">
+                                <div class="flex-grow-1">
+                                    <h5 class="fw-bold mb-1">${job.title} <span class="badge bg-dark ms-2">${job.type}</span></h5>
+                                    <p class="text-muted fw-bold mb-2" style="font-size: 1rem;">
+                                    ${job.company} 
+                                    <span class="text-secondary ms-3" style="font-size: 0.8rem;">| Experience: ${job.experience}</span>
+                                    </p>                                    
+                                    <p class="text-muted small mb-2">${job.description}</p>
+                                    <div class="d-flex text-muted small gap-4 mb-3">
+                                        <span><i class="ti-briefcase me-1"></i>${job.category}</span>
+                                        <span><i class="ti-location-pin me-1"></i>${job.location}</span>
+                                        <span><i class="ti-wallet me-1"></i>${job.salary}</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ms-auto mt-3 mt-md-0">
+                                    <a href="/apply/hot-${job.id}" class="btn btn-success btn-sm rounded-pill px-4">APPLY JOB</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        jobContainer.insertAdjacentHTML('beforeend', jobHTML);
+                    });
+
+                    showingRange.textContent = `${Math.min(start + 1, filteredJobs.length)}–${Math.min(end, filteredJobs.length)}`;
+                    totalJobs.textContent = filteredJobs.length;
+
+                    renderPageNumbers();
+
+                    // Enable/disable prev/next buttons accordingly
+                    prevBtn.disabled = currentPage <= 1;
+                    nextBtn.disabled = currentPage >= Math.ceil(filteredJobs.length / jobsPerPage);
+                }
+
+                function renderPageNumbers() {
+                    pageNumbers.innerHTML = "";
+                    const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+                    for (let i = 1; i <= totalPages; i++) {
+                        const btn = document.createElement("button");
+                        btn.textContent = i;
+                        btn.className = `btn btn-sm ${i === currentPage ? "btn-dark text-white" : "btn-outline-secondary"} rounded-pill`;
+                        btn.addEventListener("click", () => {
+                            currentPage = i;
+                            renderJobs();
+                        });
+                        pageNumbers.appendChild(btn);
+                    }
+                }
+
+                function applyFilters() {
+                    const selectedLocation = locationFilter.value;
+                    const selectedCategory = categoryFilter.value;
+                    const selectedExperience = experienceFilter.value;
+
+                    filteredJobs = hotJobs.filter(job => {
+                        const jobExp = job.experience.toLowerCase();
+
+                        let experienceMatch = false;
+                        if (selectedExperience === "all") {
+                            experienceMatch = true;
+                        } else if (selectedExperience === "fresher") {
+                            experienceMatch = jobExp.includes("fresher") || jobExp.includes("0") || jobExp.includes("0-1") || jobExp.includes("1-2");
+                        } else if (selectedExperience === "1-3") {
+                            // Simple overlap rule for experience wording
+                            experienceMatch =
+                                jobExp.includes("1-3") ||
+                                jobExp.includes("1-2") ||
+                                jobExp.includes("2-3") ||
+                                jobExp.includes("1-4") ||
+                                jobExp.includes("2-4") ||
+                                jobExp.includes("3 years") ||
+                                jobExp === "1-3 years" ||
+                                jobExp === "2-4 years" ||
+                                jobExp === "1-2 years";
+                        } else if (selectedExperience === "3-5") {
+                            experienceMatch =
+                                jobExp.includes("3-5") ||
+                                jobExp.includes("4-5") ||
+                                jobExp.includes("3-6") ||
+                                jobExp.includes("3 years") ||
+                                jobExp === "3-5 years" ||
+                                jobExp === "3-6 years";
+                        } else if (selectedExperience === "5plus") {
+                            experienceMatch =
+                                jobExp.includes("5+") ||
+                                jobExp.includes("6+") ||
+                                jobExp.includes("senior") ||
+                                jobExp.includes("lead") ||
+                                jobExp.includes("6+ years") ||
+                                jobExp.includes("5+ years");
+                        }
+
+                        return (
+                            (selectedLocation === "all" || job.location === selectedLocation) &&
+                            (selectedCategory === "all" || job.category === selectedCategory) &&
+                            experienceMatch
+                        );
+                    });
+                    currentPage = 1;
+                    renderJobs();
+                }
+
+                function populateFilters() {
+                    const locations = Array.from(new Set(hotJobs.map(j => j.location))).sort();
+                    const categories = Array.from(new Set(hotJobs.map(j => j.category))).sort();
+
+                    locations.forEach(loc => {
+                        const option = document.createElement("option");
+                        option.value = loc;
+                        option.textContent = loc;
+                        locationFilter.appendChild(option);
+                    });
+
+                    categories.forEach(cat => {
+                        const option = document.createElement("option");
+                        option.value = cat;
+                        option.textContent = cat;
+                        categoryFilter.appendChild(option);
+                    });
+                }
+
+                // Event listeners
+                prevBtn.addEventListener("click", () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderJobs();
+                    }
+                });
+
+                nextBtn.addEventListener("click", () => {
+                    if (currentPage < Math.ceil(filteredJobs.length / jobsPerPage)) {
+                        currentPage++;
+                        renderJobs();
+                    }
+                });
+
+                locationFilter.addEventListener("change", applyFilters);
+                categoryFilter.addEventListener("change", applyFilters);
+                experienceFilter.addEventListener("change", applyFilters);
+
+                // Initialize
+                populateFilters();
+                applyFilters();
+            });
+        </script>
+    </div>
+</section>
+{% endblock %}

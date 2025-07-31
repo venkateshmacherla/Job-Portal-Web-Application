@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<div class="dashboard-container">
+    <div class="dashboard-header mb-4">
+        <div class="dashboard-icon">
+            <i class="bi bi-speedometer2"></i>
+        </div>
+        <h2 class="dashboard-title">
+            Dashboard
+        </h2>
+        <div class="dashboard-subtitle text-muted">
+            Welcome back! All your key metrics and updates at a glance.
+        </div>
+    </div>
+
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('logout') }}" class="logout-btn mb-3">Logout</a>
+
+    <!-- Employer Dashboard -->
+    {% if session['role'] == 'employer' %}
+    <p class="welcome-msg">
+        👔 Welcome, <strong>Employer</strong>! Here are your job postings.
+    </p>
+    <h3>Your Job Posts <span class="badge bg-primary ms-2">{{ jobs|length }}</span></h3>
+
+    {% if jobs %}
+    <div class="row g-4">
+        {% for job in jobs %}
+        <div class="col-md-6">
+            <div class="job-card">
+                <div>
+                    <div class="job-title">{{ job.title }} <span class="card-badge">Active</span></div>
+                    <div class="job-label"><b>Company:</b> {{ job.company }}</div>
+                    <div class="job-label"><b>Location:</b> {{ job.location }}</div>
+                    <div class="job-label salary-label"><b>Salary:</b> {{ job.salary }}</div>
+                    <p class="job-description">{{ job.description }}</p>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                    <div style="flex: 1 1 0;">
+                        <a href="{{ url_for('edit_job', job_id=job.id) }}"
+                            class="btn btn-primary fw-bold rounded w-100">
+                            Edit
+                        </a>
+                    </div>
+                    <div style="flex: 1 1 0;">
+                        <form action="{{ url_for('delete_job', job_id=job.id) }}" method="POST" style="display: block;"
+                            onsubmit="return confirm('Are you sure you want to delete this job?');">
+                            <button type="submit" class="btn btn-danger fw-bold rounded w-100">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        No job posts found. <a href="{{ url_for('post_job') }}">Post a Job</a>
+    </div>
+    {% endif %}
+
+    <!-- Job Seeker Dashboard -->
+    {% elif session['role'] == 'jobseeker' %}
+    <p class="welcome-msg">👤 Welcome, <strong>Job Seeker</strong>! Here are the jobs you've applied for.</p>
+    <h3>Your Applications <span class="badge bg-success ms-2">{{ applications|length }}</span></h3>
+
+    {% if applications %}
+    <div class="row g-4">
+        {% for app in applications %}
+        <div class="col-md-6">
+            <div class="application-card job-card">
+                {% set job_obj = app.job %}
+                <div class="job-title">
+                    {{ job_obj.title if job_obj else "This job is no longer available" }}
+                    {% if not job_obj %}<span class="card-badge bg-warning text-dark">Closed</span>{% endif %}
+                </div>
+                <div class="job-label"><b>Company:</b> {{ job_obj.company if job_obj else "N/A" }}</div>
+                <div class="job-label"><b>Location:</b> {{ job_obj.location if job_obj else "N/A" }}</div>
+                <div class="job-label salary-label"><b>Salary:</b> {{ job_obj.salary if job_obj else "N/A" }}</div>
+                <p class="job-description">{{ job_obj.description if job_obj else "" }}</p>
+                <small>Applied Job ID: {{ app.job_id }}</small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You haven't applied for any jobs yet. <a href="{{ url_for('home') }}">Browse Jobs</a></p>
+    {% endif %}
+
+    <!-- Admin Dashboard -->
+    {% elif session['role'] == 'admin' %}
+    <p class="welcome-msg">🛡️ Welcome, <strong>Admin</strong>! Here is the platform overview.</p>
+    <h3>All Users <span class="badge bg-dark ms-2">{{ users|length }}</span></h3>
+
+    {% if users %}
+    <div class="mb-4">
+        {% for user in users %}
+        <p class="user-info mb-1">👤 <b>{{ user.username }}</b> <span class="badge bg-light text-dark ms-2">{{ user.role
+                }}</span></p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No users found.</p>
+    {% endif %}
+
+    <h3>All Jobs <span class="badge bg-primary ms-2">{{ jobs|length }}</span></h3>
+
+    {% if jobs %}
+    <div class="row g-4">
+        {% for job in jobs %}
+        <div class="col-md-6">
+            <div class="job-card">
+                <div>
+                    <div class="job-title">{{ job.title }} <span class="card-badge">Active</span></div>
+                    <div class="job-label"><b>Company:</b> {{ job.company }}</div>
+                    <div class="job-label"><b>Location:</b> {{ job.location }}</div>
+                    <div class="job-label salary-label"><b>Salary:</b> {{ job.salary }}</div>
+                    <p class="job-description">{{ job.description }}</p>
+                </div>
+                <a href="{{ url_for('edit_job', job_id=job.id) }}" class="action-btn">Edit</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No jobs found.</div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

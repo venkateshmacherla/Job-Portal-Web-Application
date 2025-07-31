@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Edit Job{% endblock %}
+
+{% block content %}
+<style>
+    .editjob-container {
+        min-height: 60vh;
+        /* or 100vh for full height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .editjob-box {
+        background: #fff;
+        padding: 2.5rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.09);
+        width: 100%;
+        max-width: 700px;
+    }
+
+    .editjob-box h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+    }
+
+    .editjob-box input[type="text"],
+    .editjob-box textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 1.1rem;
+        padding: 0.65rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        resize: vertical;
+    }
+
+    .editjob-box button {
+        width: 100%;
+        padding: 0.7rem;
+        background-color: #1864ab;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 1.08rem;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+
+    .editjob-box button:hover {
+        background: #235ba8;
+    }
+</style>
+
+<div class="editjob-container">
+    <div class="editjob-box">
+        <h2>Edit Job</h2>
+        <form method="POST" autocomplete="off">
+            <input type="text" name="title" placeholder="Job Title" value="{{ job.title }}" required>
+            <textarea name="description" placeholder="Job Description" rows="5"
+                required>{{ job.description }}</textarea>
+            <input type="text" name="salary" placeholder="Salary" value="{{ job.salary }}" required>
+            <input type="text" name="location" placeholder="Location" value="{{ job.location }}" required>
+            <input type="text" name="company" placeholder="Company Name" value="{{ job.company }}" required>
+            <button type="submit">Update Job</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

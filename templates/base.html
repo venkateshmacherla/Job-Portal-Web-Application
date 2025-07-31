@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Bootstrap 5 Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top"
+        style="background: linear-gradient(to left, #eec3c3, #acc7e7);">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo" height="80">
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
+                    {% if session.get('user_id') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    {% if session.get('role') == 'employer' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/post-job">Post Job</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer-main mt-5">
+        <div class="container py-5">
+            <div class="row g-4 align-items-start">
+
+                <!-- Logo and About -->
+                <div class="col-md-4">
+                    <a href="/" class="mb-3 d-inline-block">
+                        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo" height="80"
+                            class="footer-logo">
+                    </a>
+                    <p class="footer-desc mt-3 mb-0">
+                        Your trusted partner in careers — connecting <b>top talent</b> with <b>great companies</b>.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-6 col-md-2">
+                    <h6 class="footer-title mb-3">Quick Links</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="/" class="footer-link">Home</a></li>
+                        <li><a href="/" class="footer-link">About</a></li>
+                        <li><a href="/dashboard" class="footer-link">Dashboard</a></li>
+                        <li><a href="/post-job" class="footer-link">Post Job</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-6 col-md-3">
+                    <h6 class="footer-title mb-3">Contact</h6>
+                    <ul class="list-unstyled text-muted small mb-3">
+                        <li>Email: <a href="mailto:support@jobportal.com" class="footer-link">support@jobportal.com</a>
+                        </li>
+                        <li>Phone: <a href="tel:+18000123456" class="footer-link">1800-012-3456</a></li>
+                    </ul>
+                    <h6 class="footer-title mb-3">Follow Us</h6>
+                    <div class="footer-social d-flex gap-3 mt-2">
+
+                        <a href="https://x.com/venky_macherla?t=X1PH0q6c8yyMIYoDCuUqfg&s=09" aria-label="Twitter"><i
+                                class="bi bi-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/venkatesh-macharla-2699b7227/" aria-label="LinkedIn"><i
+                                class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="col-md-3">
+                    <h6 class="footer-title mb-3">Job Alerts</h6>
+                    <form class="footer-newsletter d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-gradient btn-sm">Send</button>
+                    </form>
+                    <small class="d-block text-muted mt-2">Stay updated on jobs & news!</small>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-muted small">
+                &copy; {{ 2025 }} Job Portal. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
